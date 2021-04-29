@@ -1,5 +1,5 @@
 
-const Chat = () => {
+export const Chat = () => {
   return (
     <div>
       i am the chat
@@ -7,4 +7,3 @@ const Chat = () => {
   )
 }
 
-export default Chat

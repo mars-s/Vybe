@@ -1,9 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
-import Signup from 'components';
-import Chat from 'components';
-import Login from 'components';
+import { Login, Signup, Chat} from 'components';
 
-const App = () => {
+export const App = () => {
   return (
     <Switch>
       <Chat exact path='/' component={Chat} />
@@ -14,4 +12,3 @@ const App = () => {
   )
 }
 
-export default App
