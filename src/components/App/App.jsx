@@ -7,7 +7,6 @@ export const App = () => {
       <Chat exact path='/' component={Chat} />
       <Route path='/login' component={Login} />
       <Route path='/signup' component={Signup} />
-      <Route path='/chat' component={Login} />
     </Switch>
   )
 }
