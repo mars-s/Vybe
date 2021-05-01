@@ -1,10 +1,12 @@
-import { Formik, Form, ErrorMessage, Field } from "formik"
+import { useState } from "react"
+import { Formik, Form } from "formik"
 import { useHistory } from 'react-router-dom'
 import { validationSchema, defaultValues } from './formikConfig'
 import { FormField } from 'components'
 
 export const Signup = () => {
   const history = useHistory()
+  const [serverError, setServerError] = useState('')
 
   return (
     <div className='auth-form'>
@@ -28,12 +30,14 @@ export const Signup = () => {
             <div className="auth-link-container">
               Already have an account?{' '}
               <span className="auth-link" onClick={() => history.push('login')}>
-                Log In
+                Log In!
               </span>
             </div>
           </Form>
         )}
       </Formik>
-    </div>
+
+      {!!serverError && <div className='error'>{serverError}</div>}
+    </div >
   )
 }
