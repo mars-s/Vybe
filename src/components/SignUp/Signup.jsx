@@ -28,7 +28,7 @@ export const Signup = () => {
             <div className="auth-link-container">
               Already have an account?{' '}
               <span className="auth-link" onClick={() => history.push('login')}>
-                Log In!
+                Log In
               </span>
             </div>
           </Form>
