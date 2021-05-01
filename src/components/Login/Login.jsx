@@ -1,10 +1,10 @@
-import React from 'react'
+import { Formik } from 'formik'
 
 export const Login = () => {
+
   return (
-    <div>
-      i am login
-    </div>
+    <div className="auth-form">
+      <h1>Login</h1>
+  </div>
   )
 }
-
