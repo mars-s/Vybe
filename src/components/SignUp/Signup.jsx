@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Formik, Form } from "formik"
 import { useHistory } from 'react-router-dom'
 import { validationSchema, defaultValues } from './formikConfig'
@@ -5,12 +6,16 @@ import { FormField } from 'components'
 
 export const Signup = () => {
   const history = useHistory()
+  const [serverError, setServerError] = useState('')
+
+  const signup = ({ email, userName, password }, { setSubmitting }) =>
+  console.log('Signing up: ', email, userName, password)
 
   return (
     <div className='auth-form'>
       <h1>Sign Up</h1>
       <Formik
-        onSubmit={() => console.log('submit')}
+        onSubmit={signup}
         validatorOnMount={true}
         initialValues={defaultValues}
         validationSchema={validationSchema}
@@ -28,12 +33,14 @@ export const Signup = () => {
             <div className="auth-link-container">
               Already have an account?{' '}
               <span className="auth-link" onClick={() => history.push('login')}>
-                Log In
+                Log In!
               </span>
             </div>
           </Form>
         )}
       </Formik>
-    </div>
+
+      {!!serverError && <div className='error'>{serverError}</div>}
+    </div >
   )
 }
