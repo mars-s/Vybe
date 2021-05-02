@@ -6,10 +6,10 @@ import { FormField } from 'components'
 
 export const Signup = () => {
   const history = useHistory()
-  const [serverError, setServerError] = useState('')
+  const [serverError] = useState('')
 
   const signup = ({ email, userName, password }, { setSubmitting }) =>
-  console.log('Signing up: ', email, userName, password)
+    console.log('Signing up: ', email, userName, password)
 
   return (
     <div className='auth-form'>
