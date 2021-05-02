@@ -11,3 +11,7 @@ https://www.youtube.com/watch?v=ODoxVFQKmBc&list=WL&index=10&t=2932s
 ## Things to note
  The main branch is the production branch and is being updated on vercel live.
  You cannot have any npm warns like unused variables because vercel treats warns like errors.
+
+# Dev team
+ 1. @ScriptedRain
+ 2. @Krishp058
