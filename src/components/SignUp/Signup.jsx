@@ -3,13 +3,23 @@ import { Formik, Form } from "formik"
 import { useHistory } from 'react-router-dom'
 import { validationSchema, defaultValues } from './formikConfig'
 import { FormField } from 'components'
+import { fb } from 'service'
 
 export const Signup = () => {
   const history = useHistory()
   const [serverError] = useState('')
 
-  const signup = ({ email, userName, password }, { setSubmitting }) =>
-    console.log('Signing up: ', email, userName, password)
+  const signup = ({ email, userName, password }, { setSubmitting }) => {
+    fb.auth
+      .createUserWithEmailAndPassword(email, password).then(res => {
+        console.log(res)
+
+        // if (res?.user?.uid) {
+
+        // }
+      })
+  }
+
 
   return (
     <div className='auth-form'>
