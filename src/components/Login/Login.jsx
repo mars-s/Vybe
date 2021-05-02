@@ -17,7 +17,6 @@ export const Login = () => {
         }
       })
       .catch(err => {
-        console.log(err)
         if (err.code === 'auth/wrong-password') {
           setServerError('Invalid password')
         } else if (err.code === 'auth/user-not-found') {
@@ -26,6 +25,7 @@ export const Login = () => {
           setServerError('Something went wrong')
         }
       })
+      .finally(() => setSubmitting(false))
   }
 
 
