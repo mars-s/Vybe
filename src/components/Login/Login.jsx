@@ -3,13 +3,21 @@ import { Formik, Form } from 'formik'
 import { FormField } from 'components'
 import { useHistory } from 'react-router-dom'
 import { defaultValues, validationSchema } from './formikConfig'
+import { fb } from 'service'
 
 export const Login = () => {
   const history = useHistory()
-  const [serverError] = useState('')
+  const [serverError, setServerError] = useState('')
 
-  const login = ({ email, password }, { setSubmitting }) =>
-    console.log('Logging In: ', email, password)
+  const login = ({ email, password }, { setSubmitting }) => {
+    fb.auth.signInWithEmailAndPassword(email, password)
+      .then(res => {
+        if (!res.user) {
+          setServerError("We're having trouble logging you in. please try again")
+        }
+      })
+  }
+
 
   return (
     <div className="auth-form">
