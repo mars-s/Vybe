@@ -16,6 +16,16 @@ export const Login = () => {
           setServerError("We're having trouble logging you in. please try again")
         }
       })
+      .catch(err => {
+        console.log(err)
+        if (err.code === 'auth/wrong-password') {
+          setServerError('Invalid password')
+        } else if (err.code === 'auth/user-not-found') {
+          setServerError('No accout of this email')
+        } else {
+          setServerError('Something went wrong')
+        }
+      })
   }
 
 
@@ -46,7 +56,7 @@ export const Login = () => {
 
             <button tpye='submit' disabled={!isValid || isSubmitting}>
               Login
-                </button>
+            </button>
 
           </Form>
         )}
