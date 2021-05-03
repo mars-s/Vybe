@@ -10,29 +10,28 @@ export const Signup = () => {
   const [serverError, setServerError] = useState('')
 
   const signup = ({ email, userName, password }, { setSubmitting }) => {
-    fb.auth
-      .createUserWithEmailAndPassword(email, password).then(res => {
-        if (res?.user?.uid) {
-          fetch('/api/createUser', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              userName,
-              userId: res.user.uid,
-            })
+    fb.auth.createUserWithEmailAndPassword(email, password).then(res => {
+      if (res?.user?.uid) {
+        fetch('/api/createUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            userName,
+            userId: res.user.uid,
           })
-            .then(() => {
-              fb.firestore
-                .collection('ChatUsers')
-                .doc(res.user.uid)
-                .set({ userName, avatar: '' })
-            })
-        } else {
-          setServerError("We are having trouble signing you up. Please try again.")
-        }
-      })
+        })
+          .then(() => {
+            fb.firestore
+              .collection('ChatUsers')
+              .doc(res.user.uid)
+              .set({ userName, avatar: '' })
+          })
+      } else {
+        setServerError("We are having trouble signing you up. Please try again.")
+      }
+    })
       .catch(err => {
         if (err.code === 'auth/email-already-in-use') {
           setServerError('An account with this email already exists')
