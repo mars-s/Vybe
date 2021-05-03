@@ -16,16 +16,16 @@ export const Signup = () => {
           fetch('/api/createUser', {
             method: 'POST',
             headers: {
-              'Content type': 'application/json'
+              'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify({
               userName,
               userId: res.user.uid,
-            }
+            })
           })
             .then(() => {
               fb.firestore
-                .collection('chatUsers')
+                .collection('ChatUsers')
                 .doc(res.user.uid)
                 .set({ userName, avatar: '' })
             })
