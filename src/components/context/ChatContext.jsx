@@ -1,0 +1,2 @@
+import { fb } from 'service'
+
